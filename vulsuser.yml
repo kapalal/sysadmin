@@ -1,0 +1,14 @@
+---
+- hosts: #insert target host
+  remote_user: ansible
+  become: yes
+  become_method: sudo
+  connection: ssh
+  tasks:
+  - name: Create Vuls User
+    user:
+     name: vuls
+     shell: /bin/bash
+     password: "{{ 'test' | password_hash('sha512') }}"
+     state: present
+     update_password: on_create
