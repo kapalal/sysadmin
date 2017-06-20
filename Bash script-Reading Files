@@ -1,0 +1,25 @@
+#/bin/bash
+#simple script to read a file
+
+echo "Please select a file to parse thru: "
+read FILE
+
+while read -r LINE;do
+ echo "The man is: $LINE"
+done <$FILE #done 
+
+#with the file descriptor
+#/bin/bash
+
+echo "Enter a file name to read: "
+read FILE
+
+exec 5<>$FILE
+
+while read -r SUPERHERO; do # $SUPERHEROS is the file to read
+ echo "Superhero NAme: $SUPERHERO"
+done <&5
+
+echo "FIle was read on `date`" >&5
+
+exec 5>&-
